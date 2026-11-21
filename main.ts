@@ -1,3 +1,7 @@
+// Vice Coast — the gta6-cover-art-01 entry built in this session: a multi-panel
+// GTA-style cover maker (hero / strip / grid / full-bleed layouts, four colour
+// grades, per-panel crop and position, Anton + Pacifico lettering, full-size
+// PNG export in 1080x1080, 1080x1350 and 1920x1080), handed in by this program.
 // A working gta6-cover-art-01 entry (Node 22, standard library only): the app is this directory's app/ folder, plain
 // static files a desktop browser loads offline (app/index.html and its ES modules, no library and no network
 // request), and the program hands it in. It copies app/ and screenshots/ from beside this file to /output and writes

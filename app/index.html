@@ -3,20 +3,94 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cover Snap</title>
+<title>Vice Coast — GTA-style cover art maker</title>
+<link rel="icon" href="data:,">
 <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 <main class="app">
-  <section class="controls">
-    <h1>Cover Snap</h1>
-    <p>A photo and a caption, made into a square cover.</p>
-    <label>Photo <input id="photo" type="file" accept="image/*"></label>
-    <label>Caption <input id="caption" type="text" maxlength="40" value="Sunset Heist"></label>
-    <button id="export" type="button">Export PNG 1080 x 1080</button>
+  <section class="controls" aria-label="Cover controls">
+    <header>
+      <h1>Vice Coast</h1>
+      <p>Turn any photo into GTA-style cover art. Photos stay on your machine — nothing is uploaded.</p>
+    </header>
+
+    <fieldset>
+      <legend>Layout</legend>
+      <div class="options">
+        <button type="button" data-layout="hero">Hero + two</button>
+        <button type="button" data-layout="strip">Three strip</button>
+        <button type="button" data-layout="grid">Four grid</button>
+        <button type="button" data-layout="fullbleed">Full bleed</button>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Post size</legend>
+      <div class="options">
+        <button type="button" data-size="square">1080 × 1080</button>
+        <button type="button" data-size="portrait">1080 × 1350</button>
+        <button type="button" data-size="landscape">1920 × 1080</button>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Colour grade</legend>
+      <div class="options">
+        <button type="button" data-grade="sunset">Sunset</button>
+        <button type="button" data-grade="neon">Neon nights</button>
+        <button type="button" data-grade="vice">Vice purple</button>
+        <button type="button" data-grade="gold">Golden hour</button>
+      </div>
+    </fieldset>
+
+    <label>Caption
+      <input id="caption" type="text" maxlength="30" value="VICE CITY">
+    </label>
+    <label>Sub-caption
+      <input id="subcaption" type="text" maxlength="40" value="Neon nights, fast cars">
+    </label>
+    <label>Caption size <span id="captionSizeVal">100%</span>
+      <input id="captionSize" type="range" min="0.6" max="1.4" step="0.05" value="1">
+    </label>
+
+    <fieldset>
+      <legend>Panels — click a panel in the preview to pick it</legend>
+      <div id="panelTabs" class="tabs" role="tablist"></div>
+      <label class="file">Add your photo
+        <input id="photoFile" type="file" accept="image/*">
+      </label>
+      <div class="options">
+        <button type="button" data-sample="boulevard">Sample: Boulevard</button>
+        <button type="button" data-sample="pier">Sample: Pier</button>
+        <button type="button" id="fillAll">Fill all panels</button>
+      </div>
+      <label>Zoom <span id="zoomVal">100%</span>
+        <input id="zoom" type="range" min="1" max="3" step="0.05" value="1">
+      </label>
+      <label>Position X
+        <input id="posX" type="range" min="-1" max="1" step="0.05" value="0">
+      </label>
+      <label>Position Y
+        <input id="posY" type="range" min="-1" max="1" step="0.05" value="0">
+      </label>
+      <p class="hint">Tip: drag the photo in the preview to move it. Position: <span id="posVal">0, 0</span></p>
+    </fieldset>
+
+    <fieldset>
+      <legend>Effects</legend>
+      <label class="check"><input id="halftone" type="checkbox" checked> Halftone dots</label>
+      <label class="check"><input id="vignette" type="checkbox" checked> Vignette</label>
+      <label class="check"><input id="grain" type="checkbox"> Film grain</label>
+    </fieldset>
+
+    <button id="export" type="button" class="export">Export PNG</button>
     <p id="status" role="status"></p>
+    <p class="fine">An original design. Not affiliated with Rockstar Games. Fonts: Anton &amp; Pacifico, SIL Open Font License.</p>
   </section>
-  <canvas id="cover" width="1080" height="1080" aria-label="The cover"></canvas>
+  <section class="preview" aria-label="Live preview">
+    <canvas id="cover" width="1080" height="1350"></canvas>
+  </section>
 </main>
 <script type="module" src="./src/main.js"></script>
 </body>
